@@ -12,12 +12,22 @@ function Contact() {
       </Grid>
       <Grid item xs={3}>
         <Title component="h3">
-          Ann-Marina Miyaguchi
+          Chaitanya Mamatha Ananda
         </Title>
       </Grid>
       <Grid item xs={3}>
         <TextBox>
-          Email: amiya017@ucr.edu 
+          Email: cmama002@ucr.edu
+        </TextBox>
+      </Grid>
+      <Grid item xs={3}>
+        <Title component="h3">
+          Ryan Lu
+        </Title>
+      </Grid>
+      <Grid item xs={3}>
+        <TextBox>
+          Email: rlu033@ucr.edu
         </TextBox>
       </Grid>
       <Grid item xs={3}>
@@ -27,8 +37,7 @@ function Contact() {
       </Grid>
       <Grid item xs={3}>
         <TextBox>
-          
-          Email: ineto001@ucr.edu 
+          Email: ineto001@ucr.edu
         </TextBox>
       </Grid>
     </Grid>
