@@ -18,9 +18,6 @@ function Home() {
         <h1>
           AlphaNumeric Detector 
         </h1>
-        <h2>
-          X-ML
-        </h2>
           
         </HeroBox>
       </Grid>
