@@ -9,7 +9,7 @@ class EmnistdetectoConfig(AppConfig):
     name = 'emnistdetecto'
 
     # Define paths
-    PRETRAINED_PATH = Path("emnistmodel/model/emnist_cnn/")
+    PRETRAINED_PATH = Path("emnistmodel/model/emnist_cnn2.keras")
 
     # load the model
     PRETRAINED_MODEL = keras.models.load_model(PRETRAINED_PATH)

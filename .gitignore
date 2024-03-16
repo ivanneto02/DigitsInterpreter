@@ -3,3 +3,12 @@ django_venv/
 .env
 node_modules
 digit_imgs/
+cuda/
+*.xz
+*.deb
+*.1
+images/
+django_backend/emnistmodel/model/
+model/saved_models/
+__pycache__/
+cudnn-linux-x86_64-8.7.0.84_cuda11-archive/

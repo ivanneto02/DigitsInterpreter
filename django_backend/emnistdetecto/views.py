@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+import matplotlib.pyplot as plt
 
 from PIL import Image, ImageOps
 import base64
@@ -59,12 +60,20 @@ class call_model(APIView):
         pil_img = base64ToPil(data)
 
         # Downsample image
-        down_img = np.array(pil_img.resize((28, 28), Image.ANTIALIAS))
+        down_img = np.array(pil_img.resize((28, 28), Image.BOX))
+
+        # plt.imshow(down_img)
+        # plt.savefig("digit_imgs/test.png")
+
+        # print(down_img)
+        # img = Image.fromarray(down_img)
+        # img.save("digit_imgs/test.png")
+
         down_img = np.reshape(down_img, (1, 28, 28)).astype("float32")
         down_img /= 255
 
-        print("testing, image\n\n\n")
-        print(down_img)
+        # print("testing, image\n\n\n")
+        # print(down_img)
 
         prediction = EmnistdetectoConfig.PRETRAINED_MODEL.predict(down_img).flatten()
 

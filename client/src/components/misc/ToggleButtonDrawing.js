@@ -113,9 +113,11 @@ const ToggleButtonDrawing = (props) => {
                       marginRight: "auto",
                       marginLeft: "auto",
                       border: '5px solid black',
+                      background: "black"
                       } }
                     
-                    brushRadius={30}
+                    brushRadius={50}
+                    brushColor="white"
                     canvasWidth={800}
                     canvasHeight={800}
 

@@ -7,12 +7,13 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-import tensorflow.keras as keras
+import keras
 from keras.datasets import mnist
 from keras import models
 from keras.layers import Dense, Input, Conv2D, MaxPooling2D, Dropout, Flatten, BatchNormalization
 from keras import backend as k
-from keras.utils.np_utils import to_categorical
+# from keras.utils.np_utils import to_categorical
+from keras.utils import to_categorical
 
 from config import *
 import gzip
@@ -34,9 +35,9 @@ def preprocess_data(x_train, y_train, x_test, y_test):
     x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
     x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
     inpx = (img_rows, img_cols, 1)
-  
-  x_train = x_train.astype('float32')
-  x_test = x_test.astype('float32')
+
+  x_train = np.rot90(np.fliplr(x_train.astype('float32')), axes=(2, 1))
+  x_test = np.rot90(np.fliplr(x_test.astype('float32')), axes=(2, 1))
   x_train /= 255
   x_test /= 255
 
@@ -55,32 +56,20 @@ def plot_acc_curve(epochs, hist, list_of_metrics):
     x = hist[m]
     plt.plot(epochs[1:], x[1:], label=m)
   plt.legend()
+  plt.savefig("./saved_figures/emnist_cnn2.png")
   
 def create_model(my_learning_rate):
   model = models.Sequential()
   model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))   # defining shape  
-  # model.add(MaxPooling2D(pool_size=(2, 2)))
   model.add(BatchNormalization())
   model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))   # defining shape  
-  # model.add(MaxPooling2D(pool_size=(2, 2)))
   model.add(BatchNormalization())
-  model.add(Dropout(0.4))
-
-  '''
-  model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))   # defining shape  
-  # model.add(MaxPooling2D(pool_size=(2, 2)))
-  model.add(BatchNormalization())
-  model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)))   # defining shape  
-  # model.add(MaxPooling2D(pool_size=(2, 2)))
-  model.add(BatchNormalization())
-  model.add(Dropout(0.4))
-  '''
-
+  model.add(Dropout(0.2))
   model.add(Flatten())
   model.add(Dense(256, activation='relu'))
-  model.add(Dropout(0.4))
+  model.add(Dropout(0.2))
   model.add(Dense(128, activation='relu'))
-  model.add(Dropout(0.4))
+  model.add(Dropout(0.2))
   model.add(Dense(NUM_CLASSES, activation='softmax'))
 
   model.compile(optimizer=keras.optimizers.Adam(learning_rate=my_learning_rate),
@@ -107,18 +96,18 @@ def train_model(model, train_features, train_label, epochs,
 
 def main():
   # Load MNIST (TODO EMNIST)
-  n_train_samples = 697932
-  n_test_samples = 82587
+  n_train_samples = None
+  n_test_samples = None
 
-  print("> Loading training data")
-  x_train = np.asarray(load_imgs(DATA_PATH + TRAIN_X_FILE, n_train_samples)) # 731,668 images in the training set
-  y_train = load_labs(DATA_PATH + TRAIN_Y_FILE, n_train_samples)
-  y_train = np.array([i[0] for i in y_train])
+  print("> Loading and separating training data")
+  train = pd.read_csv(DATA_PATH + TRAIN_FILE, nrows=n_train_samples)
+  x_train = train.iloc[:, 1:].to_numpy()
+  y_train = train.iloc[:, 0].to_numpy()
 
-  print("> Loading testing data")
-  x_test = np.asarray(load_imgs(DATA_PATH + TEST_X_FILE, n_test_samples)) # ? labels in the test set
-  y_test = load_labs(DATA_PATH + TEST_Y_FILE, n_test_samples)
-  y_test = np.asarray(np.array([i[0] for i in y_test]))
+  print("> Loading and separating testing data")
+  test = pd.read_csv(DATA_PATH + TEST_FILE, nrows=n_test_samples)
+  x_test = test.iloc[:, 1:].to_numpy()
+  y_test = test.iloc[:, 0].to_numpy()
 
   print("> Shapes:")
   print(f"    x_train: {x_train.shape}")
@@ -127,11 +116,18 @@ def main():
   print("> Preprocessing training and testing data")
   x_train, y_train, x_test, y_test = preprocess_data(x_train, y_train, x_test, y_test)
 
+  # for i in range(0, 10):
+  #   plt.imshow(x_train[i])
+  #   plt.savefig(f"saved_figures/test{i}.png")
+  #   print(y_train[i])
+
+  # return
+
   # Hyperparameters a
   learning_rate = 0.001
   validation_split = 0.2
   batch_size = 128
-  epochs = 15
+  epochs = EPOCHS
 
   # Create Model
   print("> Creating model")
@@ -157,7 +153,7 @@ def main():
   # save model 
   if not os.path.exists("./saved_models/"):
     os.makedirs("./saved_models/")
-  model.save('./saved_models/emnist_cnn')
+  model.save('./saved_models/emnist_cnn2.keras')
   # once saved we can access it using
   # model = models.load_model('saved_models/emnist_cnn')
 

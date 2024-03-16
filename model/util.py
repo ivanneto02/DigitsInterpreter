@@ -15,7 +15,7 @@ def load_imgs(dpath, length=731668): # 731,668 samples in the training set
     '''
     
     # Create binary file read object
-    f_data = gzip.open(dpath, "rb")
+    f_data = open(dpath, "rb")
 
     # Size of the NxN image, and how many images
     image_size = 28
@@ -44,7 +44,7 @@ def load_labs(dpath, length=731668): # 731,668 samples in the training set
         len   - how many labels we want to load
     '''
     # Create binary file read object
-    f = gzip.open(dpath,'rb')
+    f = open(dpath,'rb')
 
     # Skip useless data
     f.read(8)

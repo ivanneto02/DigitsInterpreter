@@ -14,6 +14,8 @@ import base64
 from io import BytesIO
 import numpy as np
 
+import matplotlib.pyplot as plt
+
 def load_map(dpath):
     '''
     In charge of loading the mappings between what EMNIST names each
@@ -59,9 +61,14 @@ class call_model(APIView):
         pil_img = base64ToPil(data)
 
         # Downsample image
-        down_img = np.array(pil_img.resize((28, 28), Image.ANTIALIAS))
+        down_img = np.array(pil_img.resize((28, 28), Image.LANCZOS))
         down_img = np.reshape(down_img, (1, 28, 28)).astype("float32")
         down_img /= 255
+
+        # print(down_img)
+
+        plt.imshow(down_img)
+        plt.savefig("digit_imgs/test.png")
 
         prediction = EmnistmodelConfig.PRETRAINED_MODEL.predict(down_img).flatten()
 
