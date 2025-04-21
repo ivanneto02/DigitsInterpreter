@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CanvasDraw from "react-canvas-draw";
+import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 import { Typography } from "@mui/material";
 import ImagePrediction from "./ImagePrediction";
 
@@ -17,6 +17,15 @@ const ToggleButtonDrawing = (props) => {
 
     const [show, setShow] = useState(false);
     const canvasRef = useRef(null);
+    const { editor, onReady } = useFabricJSEditor();
+
+    const onAddCircle = () => {
+        editor?.addCircle();
+    }
+
+    const onAddRectangle = () => {
+        editor?.addRectangle();
+    }
 
     // This is for the time interval
     // const [ticking, setTicking] = useState(false)
@@ -81,10 +90,11 @@ const ToggleButtonDrawing = (props) => {
                     <Button
                         style={{ width: "25%", height: "150%", fontSize: 25 }}
                         variant="contained"
-                        onClick={() => {
-                            setShow(true);
-                            props.setShowParentInstructions(false);
-                        }
+                        onClick={
+                            () => {
+                                setShow(true);
+                                props.setShowParentInstructions(false);
+                            }
                         }
                     >
                         Start
@@ -98,19 +108,26 @@ const ToggleButtonDrawing = (props) => {
                         <Typography variant="h4">
                             Draw the character "{RandChar()}"
                         </Typography>
-                        <CanvasDraw
-                            ref={canvasRef}
+                        <button onClick={onAddCircle}>Circle</button>
+                        <button onClick={onAddRectangle}>Rectangle</button>
+                        <FabricJSCanvas
                             style={{
-                                marginRight: "auto",
-                                marginLeft: "auto",
+                                paddingLeft: "1em",
+                                paddingRight: "1em",
+                                marginRight: "1em",
+                                marginLeft: "1em",
+                                height: "800px",
                                 border: '5px solid black',
-                                background: "black"
+                                background: "black",
                             }}
 
                             brushRadius={50}
                             brushColor="white"
-                            canvasWidth={800}
-                            canvasHeight={800}
+
+                            onReady={canvas => {
+                                canvas.setDimesions({ width: 800, height: 800 });
+                                canvas.setBackgroundColor("black", canvas.renderAll.bind(canvas));
+                            }}
 
                             onClick={() => {
                                 console.log("clicking canvas");
