@@ -7,21 +7,21 @@ import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 /*
  *	Stack to add users to the site:
  *
- *	S3 Bucket responsible for holding the users
- *		- Triggers lambda function to index user via DynamoDB database
- *
- *	DynamoDB index table
+ *  userDataTable (AWS DynamoDB)
  *		- username: string
  *		- date: string
  *		- email?: string
  *
- *	API Gateway
- *		- Front for users clicking on sign-up button
+ *  addUserDataGatewayEndpoint (AWS API Gateway)
+ *		- Front for when users check if their username is unique
  *
- *	Lambda1
- *		- Gets trigged by S3 bucket
+ *	uniqueUserNameCheckGatewayEndpoint (AWS API Gateway)
+ *		- Front for submitting form and adding users to the DynamoDB table
  *
- * 	Lambda2
+ *  addUserDataLambda (AWS Lambda)
+ *		- Called to add new user to the DynamoDB table
+ *
+ *  uniqueUserNameCheckLambda (AWS Lambda)
  * 		- Called to check if username is unique
  *
  * */
@@ -37,7 +37,7 @@ export class AlphanumericDetectorUsersStack extends cdk.Stack {
         super(scope, id, props);
 
         /* DynamoDB table to store the users */
-        const userDataTable: dynamodb.TableV2 = new dynamodb.TableV2(this, "AlphaNumericDetectorUserDataTable", {
+        const userDataTable: dynamodb.TableV2 = new dynamodb.TableV2(this, "AlphanumericDetectorUserDataTable", {
             partitionKey: { name: "pk", type: dynamodb.AttributeType.STRING },
             contributorInsights: true,
             tableClass: dynamodb.TableClass.STANDARD,
@@ -45,7 +45,7 @@ export class AlphanumericDetectorUsersStack extends cdk.Stack {
         /* --- */
 
         /* Lambda function adds users to the dynamodb table */
-        const addUserData: lambda.Function = new lambda.Function(this, "AlphaNumericDetectorAddUserData", {
+        const addUserData: lambda.Function = new lambda.Function(this, "AlphanumericDetectorAddUserData", {
             code: lambda.Code.fromAsset("lib/usersStackFunctions/addUserDataLambda"),
             runtime: lambda.Runtime.NODEJS_LATEST,
             handler: 'index.handler',

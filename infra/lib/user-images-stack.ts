@@ -26,7 +26,7 @@ const lambda = require("aws-cdk-lib/aws-lambda");
  * 		- Called to check if username is unique
  *
  * */
-export class AlphanumericDetectorUsersStack extends Stack {
+export class AlphanumericDetectorImagesStack extends Stack {
     /**
      *
      * @param {Construct} scope
@@ -34,31 +34,6 @@ export class AlphanumericDetectorUsersStack extends Stack {
      * @param {StackProps=} props
      */
 
-    constructor(scope: Construct, id: string, props: StackProps) {
-        super(scope, id, props);
+    // Blank stack for now
 
-        // S3 bucket to store users
-        const usersBucket = new s3.Bucket(this, "AlphanumericDetectorUsersBucket", {
-            /* No public accesss */
-            publicReadAccess: false,
-            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-            accessControl: s3.BucketAccessControl.PRIVATE,
-            /* -- */
-            removalPolicy: cdk.RemovalPolicy.RETAIN, // on removal of items locally, keep them in bucket
-        });
-
-        usersBucket.addCorsRule({
-            allowedOrigins: ["*"],
-            allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.POST],
-            allowedHeaders: ["*"]
-        });
-
-        // Lambda1 - lambdaUniqueUserNameCheck
-        const uniqueUserNameCheckLambda = new lambda.Function(this, "AlphanumericDetectorUniqueUserNameCheck", {
-
-            code: lambda.Code.fromAsset(),
-
-        })
-
-    }
 };
