@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
+import * as path from "path";
 
 /*
  *	Stack to add users to the site:
@@ -46,7 +47,7 @@ export class AlphanumericDetectorUsersStack extends cdk.Stack {
 
         /* Lambda function adds users to the dynamodb table */
         const addUserData: lambda.Function = new lambda.Function(this, "AlphanumericDetectorAddUserData", {
-            code: lambda.Code.fromAsset("lib/usersStackFunctions/addUserDataLambda"),
+            code: lambda.Code.fromAsset("lib/userStackFunctions/addUserDataLambda"),
             runtime: lambda.Runtime.NODEJS_LATEST,
             handler: 'index.handler',
             environment: {
@@ -71,7 +72,7 @@ export class AlphanumericDetectorUsersStack extends cdk.Stack {
 
         /* Lambda2 lambdaUniqueUserNameCheck - Checks if username is already present in the DynamoDB table */
         const uniqueUserNameCheckLambda: lambda.Function = new lambda.Function(this, "AlphanumericDetectorUniqueUserNameCheck", {
-            code: lambda.Code.fromAsset("lib/usersStackFunctions/uniqueUserNameCheckLambda"),
+            code: lambda.Code.fromAsset("lib/userStackFunctions/uniqueUserNameCheckLambda"),
             runtime: lambda.Runtime.NODEJS_LATEST,
             handler: 'index.handler',
             environment: {
