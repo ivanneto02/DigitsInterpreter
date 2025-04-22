@@ -2,7 +2,7 @@ import React from "react";
 import Grid from '@mui/material/Grid';
 import { TextBox, Title } from "../styles/TextStyles";
 
-function Contact() {
+const Contact = () => {
     return (
         <Grid container spacing={2} columns={3}>
             <Grid item xs={3}>

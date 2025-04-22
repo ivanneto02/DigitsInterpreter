@@ -1,47 +1,46 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { TextBox, Title } from "../styles/TextStyles";
+import { TextBox, Title } from "@styles/TextStyles";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-import { HeroBox } from "../styles/HeroBox";
+import { HeroBox } from "@styles/HeroBox";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-function Home() {
-
+const Home = () => {
     return (
-        <Grid container spacing={2} columns={2}>
-            <Grid item xs={2}>
+        <Grid container spacing={3}>
+            <Grid size={12}>
                 <HeroBox>
-                    <h1>
+                    <Title component="h1">
                         AlphaNumeric Detector
-                    </h1>
+                    </Title>
                 </HeroBox>
             </Grid>
-            <Grid item xs={1}>
+            <Grid size={6}>
                 <Box textAlign="center">
-                    <Link to="/draw-instructions" style={{ textDecoration: 'none', color: 'DodgerBlue' }} >
+                    <Link to="/drawing-instructions" style={{ textDecoration: 'none', color: 'DodgerBlue' }} >
                         <Button
                             style={{ width: "50%", height: "150%", fontSize: 25 }}
-                            variant="outlined">
+                            variant="contained">
                             Drawing
                         </Button>
                     </Link>
                 </Box>
             </Grid>
-            <Grid item xs={1}>
+            <Grid size={6}>
                 <Box textAlign="center">
                     <Link to="/detect" style={{ textDecoration: 'none', color: 'DodgerBlue' }}>
                         <Button
                             style={{ width: "50%", height: "150%", fontSize: 25 }}
-                            variant="outlined">
+                            variant="contained">
                             Detect
                         </Button>
                     </Link>
                 </Box>
             </Grid>
-            <Grid item xs={2}>
+            <Grid size={12}>
                 <TextBox
                     style={
                         {
@@ -65,11 +64,10 @@ function Home() {
                         <br /> <br />
 
                         Click on <b>"DRAWING"</b> or <b>"DETECT"</b> to continue.
-
                     </Typography>
                 </TextBox>
             </Grid>
-            <Grid item xs={2}>
+            <Grid size={12}>
                 <Title component="h1">
                     Gallery
                 </Title>
@@ -86,7 +84,6 @@ function Home() {
                             {
                                 marginLeft: "5%",
                                 marginRight: "5%",
-                                border: '2px solid black',
                                 marginTop: "1%"
                             }
                         }
@@ -104,10 +101,10 @@ function Home() {
                             columns={{ xs: 4, sm: 12, md: 16 }}>
 
                             {Array.from(Array(20)).map((_, index) => (
-                                <Grid item xs={2} sm={4} md={4} key={index}>
+                                <Grid key={index}>
                                     <Box>
                                         <img
-                                            src={require(`./../../galleryimages/image${index}.png`)}
+                                            src={""}
                                             alt=""
                                             loading="lazy"
                                             width="250"
@@ -121,7 +118,7 @@ function Home() {
 
                 </Box>
             </Grid>
-        </Grid>
+        </Grid >
     );
 }
 

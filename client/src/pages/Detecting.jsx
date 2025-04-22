@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Grid from '@mui/material/Grid';
-import { TextBox, Title } from "../styles/TextStyles";
+import { TextBox, Title } from "@styles/TextStyles";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import ToggleButtonDetect from "../misc/ToggleButtonDetect";
+import ToggleButtonDetect from "@components/ToggleButtonDetect";
 
-function Detecting() {
+const Detecting = () => {
     const [show, setShow] = useState(true);
 
     return (

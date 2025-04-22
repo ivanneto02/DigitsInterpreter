@@ -3,16 +3,15 @@ import Grid from '@mui/material/Grid';
 import { TextBox, Title } from "../styles/TextStyles";
 import Typography from "@mui/material/Typography";
 
-function About() {
+const About = () => {
     return (
-        <Grid container spacing={2} columns={3}>
-            <Grid item xs={3}>
+        <Grid container spacing={2} columns={4}>
+            <Grid size={4}>
                 <Title component="h1">
                     About
                 </Title>
-
             </Grid>
-            <Grid item xs={3}>
+            <Grid size={4}>
                 <TextBox>
                     <Typography variant="h5">
                         The project focuses on a web application where (1) users can contribute their data to a repository of images, and (2) users can detect their own handwriting by uploading or taking their own images.
@@ -28,7 +27,7 @@ function About() {
                     </Typography>
                 </TextBox>
             </Grid>
-            <Grid item xs={3}>
+            <Grid size={4}>
                 <Title component="h2">
                     Background & Motivation
                 </Title>

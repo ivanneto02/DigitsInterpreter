@@ -1,31 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Grid from '@mui/material/Grid';
-import { TextBox, Title } from "../styles/TextStyles";
-import ToggleButtonDrawing from "../misc/ToggleButtonDrawing";
-import { FabricJSCanvas } from "fabricjs-react";
+import { Title } from "@styles/TextStyles";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { randChar } from "@utils/randChar";
 import Canvas from "@components/Canvas";
 
-function Drawing() {
-    const [showInstructions, setShowInstructions] = useState(true);
+const Drawing = () => {
+    const canvasRef = useRef(null);
 
     return (
-        <Grid
-            container
-            alignItems="center"
-            textAlign="center"
-            justifyContent="center"
-            spacing={4}
-            columns={16}
-        >
-            <Grid item xs={16}>
+        <Grid container>
+            <Grid size={12}>
                 <Title component="h1">
                     Drawing
                 </Title>
             </Grid>
-            <Grid item xs={16}>
+            <Grid size={12}>
                 <Box>
                     <Typography variant="h4">
                         Draw the character "{randChar()}"
@@ -56,10 +47,6 @@ function Drawing() {
                     />
                 </Box>
             </Grid>
-            <Grid item xs={16}>
-                <ToggleButtonDrawing setShowParentInstructions={setShowInstructions} />
-            </Grid>
-
         </Grid>
     );
 }

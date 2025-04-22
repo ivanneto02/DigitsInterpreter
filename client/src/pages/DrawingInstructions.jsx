@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from '@mui/material/Grid';
 import { TextBox, Title } from "../styles/TextStyles";
 import { Typography, Button } from "@mui/material";
@@ -6,20 +6,19 @@ import { Link } from "react-router-dom";
 
 const DrawingInstructions = () => {
     return (
-        <Grid
-            container
-            alignItems="center"
+        <Grid container
             textAlign="center"
-            justifyContent="center"
-            spacing={4}
-            columns={16}
+            direction="column"
+            spacing={3}
+            columns={4}
+            alignItems="stretch"
         >
-            <Grid item xs={16}>
+            <Grid size={4}>
                 <Title component="h1">
                     Drawing
                 </Title>
             </Grid>
-            <Grid item xs={16}>
+            <Grid size={4}>
                 <TextBox>
                     <Typography>
                         Draw a letter or digit. The game will prompt to you to write a letter (for example, "B").
@@ -43,6 +42,9 @@ const DrawingInstructions = () => {
                     <Typography>
                         Feel free to use any of these utilities to make the characters as close as possible to what you think the character should look like.
                         You may be asked to draw the same character at different times. This is intentional.
+
+
+                        The second aspect (2) focuses on the user’s experience of the application. Users need something tangible to connect with our application. By uploading their own images and having the application recognize the digits they have written, users have a use for the application besides data collection.
                     </Typography>
 
                     <br></br>
@@ -50,9 +52,9 @@ const DrawingInstructions = () => {
                     <Typography>Press <b>"Start"</b> to begin.</Typography>
                 </TextBox>
             </Grid>
-            <Grid item xs={16}>
+            <Grid size={4}>
                 <Link
-                    to="/draw"
+                    to="/drawing"
                     style={
                         {
                             textDecoration: "none",
@@ -68,7 +70,6 @@ const DrawingInstructions = () => {
                     </Button>
                 </Link>
             </Grid>
-
         </Grid>
     );
 }
