@@ -16,6 +16,7 @@ import Page from '@components/Page';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ColorModeContext from './components/ColorModeContext';
+import { lightPalette, darkPalette } from "@styles/palettes";
 
 const router = createBrowserRouter([
     {
@@ -74,9 +75,7 @@ function App() {
     const theme = useMemo(
         () =>
             createTheme({
-                palette: {
-                    mode, // defines which mode
-                },
+                ...(mode === "dark" ? darkPalette : lightPalette),
             }),
         [mode],
     );
@@ -85,9 +84,7 @@ function App() {
      * to every child that needs it, provided they use useContext(ColorModeContext) */
     return (
         <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider
-                theme={theme}
-            >
+            <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <RouterProvider router={router} />
             </ThemeProvider>

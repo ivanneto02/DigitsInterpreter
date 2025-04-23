@@ -1,6 +1,6 @@
 import MuiAppBar from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
-import { Toolbar, Typography } from '@mui/material';
+import { Toolbar, Typography, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import LightSwitchButton from "@components/LightSwitchButton";
@@ -10,6 +10,7 @@ const drawerWidth = 240;
 const StyledMuiAppbar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
+    backgroundColor: theme.palette.custom.appbar.background,
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -22,10 +23,13 @@ const StyledMuiAppbar = styled(MuiAppBar, {
         }),
         marginRight: drawerWidth,
     }),
+    backgroundImage: "none", // Otherwise background is lighter in dark mode
+    color: theme.palette.text.primary,
+    borderBottom: theme.palette.custom.appbar.border,
+    boxShadow: "none",
 }));
 
 const Appbar = (props) => {
-
     const handleAppbarOpenButton = () => {
         props.setOpen(true);
     }
@@ -36,6 +40,8 @@ const Appbar = (props) => {
                 <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
                     {props.name}
                 </Typography>
+                <Box sx={{ flexGrow: 1 }}>
+                </Box>
                 <LightSwitchButton />
                 <IconButton
                     color="inherit"

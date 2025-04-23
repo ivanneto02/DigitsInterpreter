@@ -1,5 +1,6 @@
 import SurroundLayout from "@components/SurroundLayout";
 import { Box } from "@mui/system";
+import Footer from "./Footer";
 
 const Page = (props) => {
     return (
@@ -9,6 +10,7 @@ const Page = (props) => {
             >
                 <props.component />
             </Box>
+            <Footer />
         </>
     );
 }
