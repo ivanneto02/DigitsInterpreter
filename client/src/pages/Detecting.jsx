@@ -4,6 +4,7 @@ import { TextBox, Title } from "@styles/TextStyles";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ToggleButtonDetect from "@components/ToggleButtonDetect";
+import { HeroBox } from "@styles/HeroBox";
 
 const Detecting = () => {
     const [show, setShow] = useState(true);
@@ -11,9 +12,11 @@ const Detecting = () => {
     return (
         <Grid container spacing={2} columns={3}>
             <Grid item xs={3}>
-                <Title component="h1">
-                    Detection
-                </Title>
+                <HeroBox>
+                    <Title component="h1">
+                        Detection
+                    </Title>
+                </HeroBox>
             </Grid>
             <Grid item xs={3}>
                 {show ?

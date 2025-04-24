@@ -82,33 +82,39 @@ const Home = () => {
                     <TextBox
                         style={
                             {
-                                marginLeft: "5%",
-                                marginRight: "5%",
-                                marginTop: "1%"
+                                marginLeft: "0%",
+                                marginRight: "0%",
+                                marginTop: "1%",
                             }
                         }
                     >
                         <Grid
                             container
                             style={{
-                                justifyContent: "center",
-                                alignContent: "center",
+                                justifyContent: "left",
+                                alignContent: "left",
                                 marginLeft: "auto",
                                 marginRight: "auto",
+                                "@media screen and (max-width: 900px)": {
+                                    marginLeft: "0",
+                                    marginRight: "0",
+                                    paddingLeft: "0",
+                                    paddingRight: "0",
+                                }
                             }}
                             p={4}
                             spacing={{ xs: 1, md: 1 }}
                             columns={{ xs: 4, sm: 12, md: 16 }}>
 
-                            {Array.from(Array(20)).map((_, index) => (
+                            {Array.from(Array(50)).map((_, index) => (
                                 <Grid key={index}>
                                     <Box>
                                         <img
                                             src={""}
                                             alt=""
                                             loading="lazy"
-                                            width="250"
-                                            height="200"
+                                            width="100%"
+                                            height="100%"
                                         />
                                     </Box>
                                 </Grid>

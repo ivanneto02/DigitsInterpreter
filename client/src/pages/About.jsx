@@ -2,14 +2,17 @@ import React from "react";
 import Grid from '@mui/material/Grid';
 import { TextBox, Title } from "../styles/TextStyles";
 import Typography from "@mui/material/Typography";
+import { HeroBox } from "@styles/HeroBox";
 
 const About = () => {
     return (
         <Grid container spacing={2} columns={4}>
             <Grid size={4}>
-                <Title component="h1">
-                    About
-                </Title>
+                <HeroBox>
+                    <Title component="h1">
+                        About
+                    </Title>
+                </HeroBox>
             </Grid>
             <Grid size={4}>
                 <TextBox>

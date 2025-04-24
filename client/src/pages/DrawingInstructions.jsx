@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { TextBox, Title } from "../styles/TextStyles";
 import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { HeroBox } from "@styles/HeroBox";
 
 const DrawingInstructions = () => {
     return (
@@ -14,9 +15,11 @@ const DrawingInstructions = () => {
             alignItems="stretch"
         >
             <Grid size={4}>
-                <Title component="h1">
-                    Drawing
-                </Title>
+                <HeroBox>
+                    <Title component="h1">
+                        Drawing
+                    </Title>
+                </HeroBox>
             </Grid>
             <Grid size={4}>
                 <TextBox>

@@ -7,11 +7,11 @@ import {
 } from "react-router-dom";
 
 import About from "@pages/About";
-import Contact from "@pages/Contact";
 import Home from "@pages/Home";
 import Drawing from "@pages/Drawing";
 import DrawingInstructions from "@pages/DrawingInstructions";
-import Detecting from "@pages/Detecting";
+import Uploading from "@pages/Uploading";
+import UploadingInstructions from "@pages/UploadingInstructions";
 import Page from '@components/Page';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -32,10 +32,6 @@ const router = createBrowserRouter([
         element: <Page pageName={"About"} component={About} />,
     },
     {
-        path: "/contact",
-        element: <Page pageName={"Contact"} component={Contact} />,
-    },
-    {
         path: "/drawing-instructions",
         element: <Page pageName={"Drawing Instructions"} component={DrawingInstructions} />,
     },
@@ -44,8 +40,12 @@ const router = createBrowserRouter([
         element: <Page pageName={"Drawing"} component={Drawing} />,
     },
     {
-        path: "/detect",
-        element: <Page pageName={"Detecting"} component={Detecting} />,
+        path: "/uploading",
+        element: <Page pageName={"Uploading"} component={Uploading} />,
+    },
+    {
+        path: "/uploading-instructions",
+        element: <Page pageName={"Uploading Instructions"} component={UploadingInstructions} />,
     },
 ]);
 

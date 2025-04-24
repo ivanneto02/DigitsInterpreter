@@ -34,7 +34,7 @@ const darkPalette = {
         },
         text: {
             primary: "#ffffff",
-            secondary: "#2b2b2b",
+            secondary: "#90caf9",
         },
         custom: {
             textbox: {

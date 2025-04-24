@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 const StyledHeroBox = styled(Box)(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     ...theme.typography.body1,
     padding: theme.spacing(1),
     alignContent: "center",

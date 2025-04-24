@@ -4,15 +4,18 @@ import { Title } from "@styles/TextStyles";
 import { Box } from "@mui/material";
 import { randChar } from "@utils/randChar";
 import Canvas from "@components/Canvas";
+import { HeroBox } from "@styles/HeroBox";
 
 const Drawing = () => {
 
     return (
         <Grid container>
             <Grid size={12}>
-                <Title component="h1">
-                    Drawing
-                </Title>
+                <HeroBox>
+                    <Title component="h1">
+                        Drawing
+                    </Title>
+                </HeroBox>
             </Grid>
             <Grid size={12}>
                 <Title component="h2">

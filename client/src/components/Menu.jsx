@@ -11,13 +11,13 @@ const Menu = () => {
     const topElements = [
         { text: "Home", icon: HomeIcon, linkto: "/home" },
         { text: "Drawing", icon: ModeIcon, linkto: "/drawing" },
-        { text: "Drawing Instructions", icon: HelpCenterIcon, linkto: "/drawing-instructions" },
-        { text: "Detection", icon: CameraAltIcon, linkto: "/detect" },
+        { text: "Uploading", icon: CameraAltIcon, linkto: "/uploading" },
     ];
 
     const bottomElements = [
         { text: "About", icon: InfoIcon, linkto: "/about" },
-        // { text: "Contact", icon: PermIdentityIcon, linkto: "/contact" },
+        { text: "Drawing Instructions", icon: HelpCenterIcon, linkto: "/drawing-instructions" },
+        { text: "Upload Instructions", icon: HelpCenterIcon, linkto: "/uploading-instructions" },
     ];
 
     return (
