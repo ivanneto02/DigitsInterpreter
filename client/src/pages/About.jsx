@@ -16,7 +16,7 @@ const About = () => {
             </Grid>
             <Grid size={4}>
                 <TextBox>
-                    <Typography variant="h5">
+                    <Typography variant="p">
                         The project focuses on a web application where (1) users can contribute their data to a repository of images, and (2) users can detect their own handwriting by uploading or taking their own images.
 
                         <br /><br />
@@ -35,7 +35,7 @@ const About = () => {
                     Background & Motivation
                 </Title>
                 <TextBox>
-                    <Typography variant="h5">
+                    <Typography variant="p">
                         In the Machine Learning and Data Mining spheres, lack of data availability is a real problem that affects both (1) researchers and (2) users. Computer Science researchers need data to be available to build well-performing and robust Machine Learning models that accommodate user needs in performing daily tasks.
 
                         <br /><br />

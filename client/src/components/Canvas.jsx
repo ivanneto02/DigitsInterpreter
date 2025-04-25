@@ -3,20 +3,28 @@ import { FabricJSCanvas } from "fabricjs-react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const StyledCanvas = styled(Box)(({ theme, width, height }) => ({
-    border: "solid 1px white",
+const StyledCanvas = styled(Box)(({ theme }) => ({
+    border: theme.palette.custom.footer.border,
     marginBottom: theme.spacing(10),
-    height: height,
-    width: width,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     alignContent: "center",
+    "@media screen and (max-width: 900px)": {
+        height: "100%",
+        width: "100%",
+    },
 }));
 
 const Canvas = (props) => {
     const ref = useRef();
 
     const handleOnReady = (canvas) => {
+
+        const width = document.getElementById("fabric-canvas-container").clientWidth;
+        const height = width;
+
+        canvas.setDimensions({ width: width, height: height });
         ref.current = canvas;
-        canvas.setDimensions({ width: props.width, height: props.height });
     }
 
     // useEffect to see if current canvas exists already
@@ -33,6 +41,7 @@ const Canvas = (props) => {
         <StyledCanvas
             height={props.height}
             width={props.width}
+            id="fabric-canvas-container"
         >
             <FabricJSCanvas
                 ref={ref}

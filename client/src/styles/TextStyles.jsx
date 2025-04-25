@@ -1,21 +1,36 @@
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import { Box } from '@mui/material';
 
-const TextBox = styled(Paper)(({ theme }) => ({
+const TextBox = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
     ...theme.typography.body1,
     padding: '5%',
-    paddingTop: '50px',
-    paddingBottom: '50px',
-    marginLeft: '15%',
-    marginRight: '15%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    textAlign: 'left',
+    color: theme.palette.text.primary,
+    "@media screen and (max-width: 900px)": {
+        padding: 0,
+        margin: "2%",
+        border: "none",
+        boxShadow: "none",
+    }
+}));
+
+const PaperTextBox = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.background.default,
+    ...theme.typography.body1,
+    padding: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
     textAlign: 'left',
     color: theme.palette.text.primary,
     backgroundImage: "none", // fixes lighter dark mode background
     boxShadow: theme.palette.custom.textbox.border,
     "@media screen and (max-width: 900px)": {
-        padding: "5%",
-        margin: 0,
+        padding: 0,
+        margin: "2%",
         border: "none",
         boxShadow: "none",
     }
@@ -23,7 +38,6 @@ const TextBox = styled(Paper)(({ theme }) => ({
 
 const Title = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.primary,
     boxShadow: "none",
@@ -31,4 +45,4 @@ const Title = styled(Paper)(({ theme }) => ({
     backgroundImage: "none", // fixes lighter dark mode background
 }));
 
-export { TextBox, Title };
+export { TextBox, Title, PaperTextBox };

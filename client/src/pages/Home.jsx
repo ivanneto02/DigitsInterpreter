@@ -1,12 +1,28 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { TextBox, Title } from "@styles/TextStyles";
-import Button from "@mui/material/Button";
+import { TextBox, Title, PaperTextBox } from "@styles/TextStyles";
 import Box from "@mui/material/Box";
+import { Button } from "@components/Button";
+import { MdDraw } from "react-icons/md";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 import { HeroBox } from "@styles/HeroBox";
 import { Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { styled } from "@mui/system";
+
+const HomeButtonsBox = styled(Box)(() => ({
+    display: "grid",
+    justifyContent: "center",
+    gridTemplateColumns: "1fr",
+    gap: "1em",
+    marginBottom: "1em",
+    marginLeft: "40%",
+    marginRight: "40%",
+    "@media screen and (max-width:900px)": {
+        marginLeft: "10%",
+        marginRight: "10%",
+    },
+}));
 
 const Home = () => {
     return (
@@ -18,38 +34,15 @@ const Home = () => {
                     </Title>
                 </HeroBox>
             </Grid>
-            <Grid size={6}>
-                <Box textAlign="center">
-                    <Link to="/drawing-instructions" style={{ textDecoration: 'none', color: 'DodgerBlue' }} >
-                        <Button
-                            style={{ width: "50%", height: "150%", fontSize: 25 }}
-                            variant="contained">
-                            Drawing
-                        </Button>
-                    </Link>
-                </Box>
-            </Grid>
-            <Grid size={6}>
-                <Box textAlign="center">
-                    <Link to="/detect" style={{ textDecoration: 'none', color: 'DodgerBlue' }}>
-                        <Button
-                            style={{ width: "50%", height: "150%", fontSize: 25 }}
-                            variant="contained">
-                            Detect
-                        </Button>
-                    </Link>
-                </Box>
+            <Grid size={12}>
+                <HomeButtonsBox>
+                    <Button to="/drawing-instructions" icon={MdDraw} text={"Drawing"} />
+                    <Button to="/uploading-instructions" icon={FaCloudUploadAlt} text={"Uploading"} />
+                </HomeButtonsBox>
             </Grid>
             <Grid size={12}>
-                <TextBox
-                    style={
-                        {
-                            marginLeft: "5%",
-                            marginRight: "5%"
-                        }
-                    }
-                >
-                    <Typography variant="h5">
+                <PaperTextBox>
+                    <Typography variant="p">
                         Data scarcity is very real for certain applications. For instance, the MNIST dataset only has around 60 thousand samples to work with.
                         And while the EMNIST dataset has significantly more, there remains a need to gather character image data. This project proposes a fun
                         way to gather this data in an crowd sourcing manner. The more users utilize this website for its intended purpose, the more good quality
@@ -65,26 +58,27 @@ const Home = () => {
 
                         Click on <b>"DRAWING"</b> or <b>"DETECT"</b> to continue.
                     </Typography>
-                </TextBox>
+                </PaperTextBox>
             </Grid>
             <Grid size={12}>
                 <Title component="h1">
                     Gallery
                 </Title>
                 <Box>
-                    <Typography
-                        align="left"
-                        marginLeft="5%"
-                        variant="h5">
-                        Below are some samples of images taken from the emnist dataset. Eventually, when more user data becomes available,
-                        we will be able to see drawings from other users:
-                    </Typography>
-                    <TextBox
+                    <TextBox>
+                        <Typography variant="p">
+                            Below are some samples of images taken from the emnist dataset. Eventually, when more user data becomes available,
+                            we will be able to see drawings from other users:
+                        </Typography>
+                    </TextBox>
+                    <PaperTextBox
                         style={
                             {
-                                marginLeft: "0%",
-                                marginRight: "0%",
-                                marginTop: "1%",
+                                "@media screen and (max-width: 900px)": {
+                                    marginLeft: "0%",
+                                    marginRight: "0%",
+                                    marginTop: "1%",
+                                }
                             }
                         }
                     >
@@ -102,9 +96,7 @@ const Home = () => {
                                     paddingRight: "0",
                                 }
                             }}
-                            p={4}
-                            spacing={{ xs: 1, md: 1 }}
-                            columns={{ xs: 4, sm: 12, md: 16 }}>
+                        >
 
                             {Array.from(Array(50)).map((_, index) => (
                                 <Grid key={index}>
@@ -120,8 +112,7 @@ const Home = () => {
                                 </Grid>
                             ))}
                         </Grid>
-                    </TextBox>
-
+                    </PaperTextBox>
                 </Box>
             </Grid>
         </Grid >

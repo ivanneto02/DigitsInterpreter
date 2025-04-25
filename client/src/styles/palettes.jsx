@@ -1,4 +1,7 @@
 const lightPalette = {
+    typography: {
+        fontSize: 15,
+    },
     palette: {
         mode: "light",
         background: {
