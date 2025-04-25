@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from '@mui/material/Grid';
-import { TextBox, Title } from "@styles/TextStyles";
+import { Title, PaperTextBox } from "@styles/TextStyles";
 import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { HeroBox } from "@styles/HeroBox";
@@ -23,7 +23,7 @@ const UploadingInstructions = () => {
                 </HeroBox>
             </Grid>
             <Grid size={3}>
-                <TextBox>
+                <PaperTextBox>
                     <Typography>
                         Detect your own drawings! This mode is for your own enjoyment, we do not collect any of your drawing data.
                     </Typography>
@@ -38,7 +38,7 @@ const UploadingInstructions = () => {
                     <br></br>
 
                     <Typography>Press <b>"Start"</b> to begin.</Typography>
-                </TextBox>
+                </PaperTextBox>
             </Grid>
             <Grid size={3}>
                 <Link

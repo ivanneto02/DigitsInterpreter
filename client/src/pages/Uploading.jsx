@@ -4,6 +4,18 @@ import { Title } from "@styles/TextStyles";
 import { HeroBox } from "@styles/HeroBox";
 import { Button, Typography } from "@mui/material";
 import DragAndDrop from "@components/DragAndDrop";
+import { styled } from "@mui/material/styles";
+
+const StyledUploadPageButton = styled(Button)(() => ({
+    marginBottom: "1%",
+    width: "10%",
+    margin: "1%",
+    height: "150%",
+    fontSize: 25,
+    "@media screen and (max-width: 900px)": {
+        width: "50%",
+    },
+}));
 
 const Uploading = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -100,7 +112,6 @@ const Uploading = () => {
             columns={1}
             alignItems="stretch"
         >
-
             {/* This is for the UPLOAD box, will appear */}
             <Grid size={1}>
                 <HeroBox>
@@ -115,12 +126,7 @@ const Uploading = () => {
             <Grid size={1}>
                 <>
                     {/* In charge of sending GET request to model */}
-                    <Button
-                        variant="contained"
-                        style={{
-                            marginBottom: "1%",
-                            width: "10%", height: "150%", fontSize: 25
-                        }}
+                    <StyledUploadPageButton variant="contained"
                         onClick={
                             () => {
                                 handleUpload();
@@ -128,15 +134,10 @@ const Uploading = () => {
                         }
                     >
                         Upload
-                    </Button>
+                    </StyledUploadPageButton>
 
                     {/* In charge of deleteing image from the box */}
-                    <Button
-                        variant="contained"
-                        style={{
-                            marginBottom: "1%",
-                            width: "10%", height: "150%", fontSize: 25
-                        }}
+                    <StyledUploadPageButton variant="contained"
                         onClick={
                             () => {
                                 setSelectedImage(null)
@@ -144,7 +145,7 @@ const Uploading = () => {
                         }
                     >
                         Remove
-                    </Button>
+                    </StyledUploadPageButton>
                 </>
             </Grid>
 

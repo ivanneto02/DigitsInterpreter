@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/uploading-instructions",
-        element: <Page pageName={"Uploading Instructions"} component={UploadingInstructions} />,
+        element: <Page pageName={"Upload Instructions"} component={UploadingInstructions} />,
     },
 ]);
 

@@ -17,6 +17,31 @@ const StyledUploadBox = styled(Paper)(({ theme }) => ({
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
+    "@media screen and (max-width: 900px)": {
+        width: "90%",
+        marginLeft: "1em",
+        marginRight: "1em",
+    },
+}));
+
+const StyledUploadDiv = styled("div")(({ theme }) => ({
+    visibility: "visible",
+    "@media screen and (max-width: 900px)": {
+        visibility: "hidden",
+        width: 0,
+        height: 0,
+    },
+}));
+
+const StyledUploadMobileDiv = styled("div")(({ theme }) => ({
+    visibility: "hidden",
+    width: 0,
+    height: 0,
+    "@media screen and (max-width: 900px)": {
+        visibility: "visible",
+        width: "100%",
+        height: "auto",
+    },
 }));
 
 // Credit: https://stackoverflow.com/questions/43692479/how-to-upload-an-image-in-react-js
@@ -30,6 +55,9 @@ function DragAndDrop(props) {
                 type="file"
                 id="input-file-upload"
                 multiple={false}
+                style={{
+                    marginLeft: "6em",
+                }}
                 onChange={
                     (event) => {
                         props.setSelectedImage(event.target.files[0]);
@@ -38,9 +66,12 @@ function DragAndDrop(props) {
                 }
             />
             <label id="label-file-upload" htmlFor="input-file-upload">
-                <div>
+                <StyledUploadDiv>
                     <p>Drag and drop your file here or press <b>Upload</b> below</p>
-                </div>
+                </StyledUploadDiv>
+                <StyledUploadMobileDiv>
+                    <p>Upload your files here with the <b>Upload</b> button</p>
+                </StyledUploadMobileDiv>
                 <StyledUploadBox>
                     {selectedImage ?
                         <div>
@@ -51,8 +82,7 @@ function DragAndDrop(props) {
                             />
                             <br />
                         </div>
-                        : <Typography
-                            variant="h2">No image</Typography>
+                        : <Typography variant="h2">No image</Typography>
                     }
                 </StyledUploadBox>
             </label>
