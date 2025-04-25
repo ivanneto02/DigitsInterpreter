@@ -78,6 +78,7 @@ const FooterGridItem = (props) => {
                         display: "flex",
                         gap: 5,
                         alignItems: "center",
+                        fontSize: 15,
                     }}
                 >{props.text}</Typography>
             </StyledFooterGridItem>
