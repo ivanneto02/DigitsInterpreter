@@ -24,7 +24,7 @@ const StyledUploadBox = styled(Paper)(({ theme }) => ({
     },
 }));
 
-const StyledUploadDiv = styled("div")(({ theme }) => ({
+const StyledUploadDiv = styled("div")(() => ({
     visibility: "visible",
     "@media screen and (max-width: 900px)": {
         visibility: "hidden",
@@ -33,7 +33,7 @@ const StyledUploadDiv = styled("div")(({ theme }) => ({
     },
 }));
 
-const StyledUploadMobileDiv = styled("div")(({ theme }) => ({
+const StyledUploadMobileDiv = styled("div")(() => ({
     visibility: "hidden",
     width: 0,
     height: 0,
