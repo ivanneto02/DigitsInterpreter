@@ -15,9 +15,9 @@ const StyledButtonLink = styled(Link)(() => ({
     color: 'DodgerBlue',
 }));
 
-const Button = (props) => {
+const LinkButton = (props) => {
     return (
-        <StyledButtonLink to={props.to}>
+        <StyledButtonLink to={props.to ? props.to : ""}>
             <StyledButton
                 variant="contained"
             >
@@ -28,4 +28,4 @@ const Button = (props) => {
     );
 }
 
-export { Button };
+export { LinkButton };

@@ -1,11 +1,13 @@
-import { useEffect, useRef } from "react";
 import { FabricJSCanvas } from "fabricjs-react";
+import { PencilBrush } from "fabric";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useTheme, useMediaQuery } from "@mui/material";
+import { useRef, useEffect } from "react";
 
 const StyledCanvas = styled(Box)(({ theme }) => ({
     border: theme.palette.custom.footer.border,
-    marginBottom: theme.spacing(10),
+    marginBottom: theme.spacing(2),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     alignContent: "center",
@@ -17,15 +19,23 @@ const StyledCanvas = styled(Box)(({ theme }) => ({
 
 const Canvas = (props) => {
     const ref = useRef();
+    const theme = useTheme();
+    const isMobile = useMediaQuery("(max-width: 900px)");
 
-    const handleOnReady = (canvas) => {
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Enter") {
+                ref.current.clear();
+            }
+            else {
+                console.log(`redundant key press: ${event.key}`);
+            }
+        };
 
-        const width = document.getElementById("fabric-canvas-container").clientWidth;
-        const height = width;
-
-        canvas.setDimensions({ width: width, height: height });
-        ref.current = canvas;
-    }
+        return () => {
+            document.addEventListener("keypress", handleKeyDown);
+        }
+    }, []);
 
     // useEffect to see if current canvas exists already
     useEffect(() => {
@@ -37,18 +47,33 @@ const Canvas = (props) => {
         };
     }, []);
 
+    /* Handle canvas component ready */
+    const handleOnReady = (canvas) => {
+
+        /* Canvas width and height based on real width */
+        const width = document.getElementById("fabric-canvas-container").clientWidth;
+        const height = width - 1;
+
+        /* Set brush and canvas parameters */
+        canvas.setDimensions({ width: width, height: height });
+        canvas.isDrawingMode = true;
+        canvas.backgroundColor = theme.palette.background.default;
+        canvas.freeDrawingBrush = new PencilBrush(canvas);
+        canvas.freeDrawingBrush.width = isMobile ? 60 : 90;
+        canvas.freeDrawingBrush.color = theme.palette.text.primary;
+        ref.current = canvas;
+        props.setRef(ref);
+        /* --- */
+    }
+    /* --- */
+
     return (
         <StyledCanvas
             height={props.height}
             width={props.width}
             id="fabric-canvas-container"
         >
-            <FabricJSCanvas
-                ref={ref}
-                onReady={handleOnReady}
-                brushColor="white"
-                brushRadius={50}
-            />
+            <FabricJSCanvas onReady={handleOnReady} />
         </StyledCanvas>);
 };
 

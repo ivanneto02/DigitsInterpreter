@@ -2,7 +2,7 @@ import React from "react";
 import Grid from '@mui/material/Grid';
 import { TextBox, Title, PaperTextBox } from "@styles/TextStyles";
 import Box from "@mui/material/Box";
-import { Button } from "@components/Button";
+import { LinkButton } from "@components/Button";
 import { MdDraw } from "react-icons/md";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
@@ -36,8 +36,8 @@ const Home = () => {
             </Grid>
             <Grid size={12}>
                 <HomeButtonsBox>
-                    <Button to="/drawing-instructions" icon={MdDraw} text={"Drawing"} />
-                    <Button to="/uploading-instructions" icon={FaCloudUploadAlt} text={"Uploading"} />
+                    <LinkButton to="/drawing-instructions" icon={MdDraw} text={"Drawing"} />
+                    <LinkButton to="/uploading-instructions" icon={FaCloudUploadAlt} text={"Uploading"} />
                 </HomeButtonsBox>
             </Grid>
             <Grid size={12}>
