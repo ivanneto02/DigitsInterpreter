@@ -1,5 +1,7 @@
 const { addAfterLoader, loaderByName } = require('@craco/craco')
 const path = require("path");
+const { config } = require("dotenv-cra");
+config();
 
 module.exports = {
     webpack: {
