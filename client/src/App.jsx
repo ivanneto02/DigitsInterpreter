@@ -1,12 +1,7 @@
 import './App.css';
 import React, { useMemo, useState } from "react";
-import AuthContext from './components/AuthContext';
+import { AuthProvider } from "@components/AuthContext";
 import PrivateRoute from './pages/PrivateRoute';
-
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
 
 import About from "@pages/About";
 import Home from "@pages/Home";
@@ -50,14 +45,13 @@ const routes = [
 ];
 
 const App = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const handleLogin = () => {
-        setIsAuthenticated(true);
+    const handleAppLogin = () => {
+        console.log("APP: Logging in");
     }
 
-    const handleLogout = () => {
-        setIsAuthenticated(false);
+    const handleAppLogout = () => {
+        console.log("APP: Logging out");
     }
 
     /* Keep track of mode in the app level */
@@ -92,7 +86,7 @@ const App = () => {
     /* Wrap the app with the ColorModeContext, which will pass the colorMode toggle
      * to every child that needs it, provided they use useContext(ColorModeContext) */
     return (
-        <AuthContext.Provider value={{ isAuthenticated, handleLogin, handleLogout }}>
+        <AuthProvider>
             <ColorModeContext.Provider value={colorMode}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
@@ -102,9 +96,7 @@ const App = () => {
                             {
                                 routes.map((item, index) => (
                                     <Route key={index} path={item.path} element={
-                                        <PrivateRoute
-                                            isAuthenticated={isAuthenticated}
-                                        >
+                                        <PrivateRoute>
                                             {item.element}
                                         </PrivateRoute>
                                     } />
@@ -114,7 +106,7 @@ const App = () => {
                     </BrowserRouter>
                 </ThemeProvider>
             </ColorModeContext.Provider>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 

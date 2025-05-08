@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import ModeIcon from "@mui/icons-material/Mode";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import InfoIcon from "@mui/icons-material/Info";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AuthContext from "./AuthContext";
 
 const Menu = () => {
+
+    const { handleAppLogout } = useContext(AuthContext);
 
     const topElements = [
         { text: "Home", icon: HomeIcon, linkto: "/home" },
@@ -14,10 +18,14 @@ const Menu = () => {
         { text: "Uploading", icon: CameraAltIcon, linkto: "/uploading" },
     ];
 
-    const bottomElements = [
+    const middleElements = [
         { text: "About", icon: InfoIcon, linkto: "/about" },
         { text: "Drawing Instructions", icon: HelpCenterIcon, linkto: "/drawing-instructions" },
         { text: "Upload Instructions", icon: HelpCenterIcon, linkto: "/uploading-instructions" },
+    ];
+
+    const bottomElements = [
+        { text: "Sign out", icon: LogoutIcon, linkto: "/" },
     ];
 
     return (
@@ -44,7 +52,7 @@ const Menu = () => {
             <Divider />
             <List>
                 {
-                    bottomElements.map((item, index) => (
+                    middleElements.map((item, index) => (
                         <ListItem
                             key={index}
                             disablePadding
@@ -56,6 +64,17 @@ const Menu = () => {
                         </ListItem>
                     ))
                 }
+            </List>
+            <Divider />
+
+            {/* Sign out button */}
+            <List>
+                <ListItem disablePadding>
+                    <ListItemButton href={"/"} onClick={handleAppLogout}>
+                        <ListItemIcon><LogoutIcon /></ListItemIcon>
+                        <ListItemText primary={"Sign out"} />
+                    </ListItemButton>
+                </ListItem>
             </List>
         </div>
     );

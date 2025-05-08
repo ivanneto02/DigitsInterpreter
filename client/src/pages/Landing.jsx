@@ -5,21 +5,33 @@ import { Title } from "../styles/TextStyles";
 import { GoogleLogin } from "@react-oauth/google";
 import AuthContext from "../components/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useGoogleOneTapLogin } from "@react-oauth/google";
 
 const Landing = () => {
 
-    const { handleLogin } = useContext(AuthContext);
+    const { handleAppLogin } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
-    const handleSuccess = () => {
+    const handleSuccess = (tokenResponse) => {
+        console.log("successful login");
+        console.log(tokenResponse);
         navigate("/home");
-        handleLogin();
+        // handleAppLogin();
     }
 
     const handleError = () => {
         console.log("Error logging in");
     }
+
+    useGoogleOneTapLogin({
+        onSuccess: handleSuccess,
+        onError: () => {
+            console.log("Failed");
+        },
+        auto_select: true,
+
+    });
 
     return (
         <Grid container spacing={2} columns={4}>
@@ -38,6 +50,7 @@ const Landing = () => {
                     <GoogleLogin
                         onSuccess={handleSuccess}
                         onError={handleError}
+                        auto_select={true}
                     />
                 </Box>
             </Grid>
